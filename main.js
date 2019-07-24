@@ -48,7 +48,7 @@ function _openLinkedVSCode(element) {
       success: function(data) {
         console.log(data);
       },
-      dataType: "json"
+      dataType: "text"
     })
   );
 }
