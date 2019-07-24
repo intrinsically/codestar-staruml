@@ -36,7 +36,7 @@ function _openLinkedVSCode(element) {
   console.log(
     $.ajax({
       type: "POST",
-      url: "http://127.0.0.1:1781/commands/vscode.open",
+      url: "http://127.0.0.1:1781/api/commands/vscode.open",
       beforeSend: function(xhr) {
         xhr.setRequestHeader(
           "Authorization",
