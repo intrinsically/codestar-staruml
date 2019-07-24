@@ -34,7 +34,17 @@ function _openLinkedVSCode(element) {
     return;
   }
   console.log("File = " + file + ", pattern = " + pattern);
-  console.log($);
+  console.log(
+    $.ajax({
+      type: "GET",
+      url: "http://127.0.0.1:1781/api/",
+      data: data,
+      success: function(data) {
+        console.log(data);
+      },
+      dataType: "json"
+    })
+  );
 }
 
 /** Initialize Extension */
