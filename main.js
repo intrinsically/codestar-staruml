@@ -33,7 +33,6 @@ function _openLinkedVSCode(element) {
     app.toast.warning("No file specified in navigation instruction");
     return;
   }
-  console.log("File = " + file + ", pattern = " + pattern);
   console.log(
     $.ajax({
       type: "POST",
@@ -44,11 +43,11 @@ function _openLinkedVSCode(element) {
           "Basic " + btoa("amcveigh:tiggle")
         );
       },
-      data: ["IOperation"],
+      data: JSON.stringify(["IOperation"]),
       success: function(data) {
         console.log(data);
       },
-      dataType: "text"
+      dataType: "json"
     })
   );
 }
