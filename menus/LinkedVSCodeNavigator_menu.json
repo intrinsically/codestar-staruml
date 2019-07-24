@@ -1,0 +1,12 @@
+{
+  "context-menu": {
+    "#diagram-canvas": [
+      { "type": "separator" },
+      {
+        "label": "Select in VSCode",
+        "id": "linked_vscode_navigator_ctx_menu",
+        "command": "linked_vscode_navigator:open_linked_vscode"
+      }
+    ]
+  }
+}
