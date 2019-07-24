@@ -45,6 +45,7 @@ function _openLinkedVSCode(element) {
         );
       },
       success: function(data) {
+        console.log("0--0----");
         console.log(data);
       },
       dataType: "json"
