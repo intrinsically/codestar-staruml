@@ -36,14 +36,14 @@ function _openLinkedVSCode(element) {
   console.log(
     $.ajax({
       type: "POST",
-      url: "http://127.0.0.1:1781/api/commands/editor.action.goToFile",
+      url: "http://127.0.0.1:1781/commands/vscode.open",
       beforeSend: function(xhr) {
         xhr.setRequestHeader(
           "Authorization",
           "Basic " + btoa("amcveigh:tiggle")
         );
       },
-      data: JSON.stringify(["DotvizGen"]),
+      data: JSON.stringify(["src/genbase.ts"]),
       success: function(data) {
         console.log(data);
       },
