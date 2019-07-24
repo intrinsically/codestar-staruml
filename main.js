@@ -15,7 +15,7 @@ function _handleOpenLinkedVSCode() {
   _openLinkedVSCode(element);
 }
 
-function _openLinkedVScode(element) {
+function _openLinkedVSCode(element) {
   // read the first line of the doc and parse into 2 parts
   var doc = element.documentation;
   console.log(doc);
