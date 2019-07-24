@@ -34,6 +34,7 @@ function _openLinkedVSCode(element) {
     return;
   }
   console.log("File = " + file + ", pattern = " + pattern);
+  console.log($);
 }
 
 /** Initialize Extension */
