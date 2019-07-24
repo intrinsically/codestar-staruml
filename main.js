@@ -36,16 +36,16 @@ function _openLinkedVSCode(element) {
   console.log("File = " + file + ", pattern = " + pattern);
   console.log(
     $.ajax({
-      type: "GET",
-      url: "http://127.0.0.1:1781/api/",
+      type: "POST",
+      url: "http://127.0.0.1:1781/api/goToDeclaration",
       beforeSend: function(xhr) {
         xhr.setRequestHeader(
           "Authorization",
           "Basic " + btoa("amcveigh:tiggle")
         );
       },
+      data: ["IOperation"],
       success: function(data) {
-        console.log("0--0----");
         console.log(data);
       },
       dataType: "json"
