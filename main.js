@@ -38,6 +38,12 @@ function _openLinkedVSCode(element) {
     $.ajax({
       type: "GET",
       url: "http://127.0.0.1:1781/api/",
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader(
+          "Authorization",
+          "Basic " + btoa("amcveigh:tiggle")
+        );
+      },
       success: function(data) {
         console.log(data);
       },
