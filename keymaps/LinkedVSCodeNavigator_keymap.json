@@ -1,3 +1,4 @@
 {
-  "cmdctrl-o": "linked_vscode_navigator:open_linked_vscode"
+  "cmdctrl-o": "linked_vscode_navigator:open_linked_vscode",
+  "cmdctrl-g": "linked_vscode_navigator:get_linked_vscode"
 }
