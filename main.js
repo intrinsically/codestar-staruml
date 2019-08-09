@@ -8,7 +8,6 @@ function _handleOpenLinkedVSCode() {
   }
   // read the first line of the doc and parse into 2 parts
   var doc = element.documentation;
-  console.log(doc);
   var first = doc.split("\n")[0];
   if (!first.startsWith("->")) {
     app.toast.warning(
@@ -67,9 +66,9 @@ function getSelectedElement() {
 
 /** Initialize Extension */
 function init() {
-  var CMD_OPEN_LINKED_VSCODE = "linked_vscode_navigator:open_linked_vscode";
+  var CMD_OPEN_LINKED_VSCODE = "codemap:open_linked_vscode";
   app.commands.register(CMD_OPEN_LINKED_VSCODE, _handleOpenLinkedVSCode);
-  var CMD_GET_LINKED_VSCODE = "linked_vscode_navigator:get_linked_vscode";
+  var CMD_GET_LINKED_VSCODE = "codemap:get_linked_vscode";
   app.commands.register(CMD_GET_LINKED_VSCODE, _handleGetLinkedVSCode);
 }
 

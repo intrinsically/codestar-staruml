@@ -1,0 +1,17 @@
+{
+  "context-menu": {
+    "#diagram-canvas": [
+      { "type": "separator" },
+      {
+        "label": "Codemap: Save position",
+        "id": "linked_vscode_navigator_ctx_menu2",
+        "command": "codemap:get_linked_vscode"
+      },
+      {
+        "label": "Codemap: Goto",
+        "id": "linked_vscode_navigator_ctx_menu",
+        "command": "codemap:open_linked_vscode"
+      }
+    ]
+  }
+}

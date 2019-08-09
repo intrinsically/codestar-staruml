@@ -1,0 +1,4 @@
+{
+  "cmdctrl-g": "codemap:open_linked_vscode",
+  "cmdctrl-p": "codemap:get_linked_vscode"
+}
