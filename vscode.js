@@ -14,6 +14,11 @@ function _openVSCodeLocation(element) {
   var doc = element.documentation;
   var first = doc.split("\n")[0];
   if (!first.startsWith("->")) {
+    // look at the parent if we don't have an instruction
+    if (element._parent) {
+      _openVSCodeLocation(element._parent);
+      return;
+    }
     message.warning("No VSCode navigation instruction! Form is ->file:pattern");
     return;
   }

@@ -20,6 +20,7 @@ function init() {
   $("#diagram-canvas").mousedown(function(e) {
     switch (e.which) {
       case 2:
+        console.log(e);
         var diagram = app.diagrams.getCurrentDiagram();
         var editor = app.diagrams.getEditor();
         var view = diagram.getViewAt(editor.canvas, e.offsetX, e.offsetY);
