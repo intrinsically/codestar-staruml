@@ -1,75 +1,50 @@
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
 /*global define, $, app, window */
 
-function _handleOpenLinkedVSCode() {
-  var element = getSelectedElement();
-  if (!element) {
-    return;
-  }
-  // read the first line of the doc and parse into 2 parts
-  var doc = element.documentation;
-  var first = doc.split("\n")[0];
-  if (!first.startsWith("->")) {
-    app.toast.warning(
-      "No VSCode navigation instruction! Form is ->file:pattern"
-    );
-    return;
-  }
-  var parts = first.substring(2).split(":");
-  var file = parts[0];
-  var pattern = parts[1];
-  if (!file) {
-    app.toast.warning("No file specified in navigation instruction");
-    return;
-  }
-  $.ajax({
-    type: "POST",
-    url: "http://127.0.0.1:8081/setLocation",
-    data: JSON.stringify({
-      file: file,
-      pattern: pattern
-    }),
-    success: function(data) {
-      console.log(data);
-    },
-    dataType: "json"
-  });
-}
-
-function _handleGetLinkedVSCode() {
-  var element = getSelectedElement();
-  if (!element) {
-    return;
-  }
-  $.ajax({
-    type: "GET",
-    url: "http://127.0.0.1:8081/getLocation",
-    success: function(data) {
-      element.documentation = "->" + data.file + ":" + data.pattern;
-    },
-    dataType: "json"
-  });
-}
-
-function getSelectedElement() {
-  var selectedModels = app.selections.getSelectedModels();
-
-  if (selectedModels.length == 0) {
-    app.toast.warning("No items selected.");
-    return null;
-  } else if (selectedModels.length > 1) {
-    app.toast.warning("Select only one item.");
-    return null;
-  }
-  return app.selections.getSelected();
-}
+const vscode = require("./vscode");
+const linked = require("./linkeddiagram");
+const message = require("./message");
 
 /** Initialize Extension */
 function init() {
-  var CMD_OPEN_LINKED_VSCODE = "codemap:open_linked_vscode";
-  app.commands.register(CMD_OPEN_LINKED_VSCODE, _handleOpenLinkedVSCode);
-  var CMD_GET_LINKED_VSCODE = "codemap:get_linked_vscode";
-  app.commands.register(CMD_GET_LINKED_VSCODE, _handleGetLinkedVSCode);
+  var CMD_OPEN_CODESTAR = "codestar:open_linked_vscode";
+  app.commands.register(CMD_OPEN_CODESTAR, vscode._handleOpenVSCodeLocation);
+  var CMD_GET_CODESTAR = "codestar:get_linked_vscode";
+  app.commands.register(CMD_GET_CODESTAR, vscode._handleSaveVSCodeLocation);
+  var CMD_OPEN_CODESTAR = "codestar:open_linked_diagram";
+  app.commands.register(CMD_OPEN_CODESTAR, linked._handleOpenLinkedDiagram);
+
+  // make toasts disappear after 1 second
+  app.toast.toast.options.autoHideAfter = 1000;
+
+  $("#diagram-canvas").mousedown(function(e) {
+    switch (e.which) {
+      case 2:
+        var diagram = app.diagrams.getCurrentDiagram();
+        var editor = app.diagrams.getEditor();
+        var view = diagram.getViewAt(editor.canvas, e.offsetX, e.offsetY);
+        if (view) {
+          var model = view.model;
+          if (e.metaKey || e.ctrlKey) {
+            vscode._saveVSCodeLocation(model);
+          } else {
+            // if this is a package then goto parent
+            if (model instanceof type.UMLPackage) {
+              linked._openLinkedDiagram(model);
+            } else {
+              // otherwise open the linked diagram
+              vscode._openVSCodeLocation(view.model);
+            }
+          }
+        } else {
+          // treat as "goto parent diagrams"
+          linked._openLinkedDiagram(null);
+        }
+        return true; // to allow the browser to know that we handled it.
+    }
+    return false;
+  });
+  message.info("Installed Codestar extension");
 }
 
 exports.init = init;

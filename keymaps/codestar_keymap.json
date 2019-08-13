@@ -1,0 +1,5 @@
+{
+  "cmdctrl-g": "codestar:open_linked_vscode",
+  "cmdctrl-p": "codestar:get_linked_vscode",
+  "cmdctrl-l": "codestar:open_linked_diagram"
+}

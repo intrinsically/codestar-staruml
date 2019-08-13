@@ -1,0 +1,23 @@
+{
+  "context-menu": {
+    "#diagram-canvas": [
+      { "type": "separator" },
+      {
+        "label": "Codestar: Save position",
+        "id": "codestar_ctx_menu1",
+        "command": "codestar:get_linked_vscode"
+      },
+      {
+        "label": "Codemap: Goto",
+        "id": "codestar_ctx_menu2",
+        "command": "codestar:open_linked_vscode"
+      },
+      { "type": "separator" },
+      {
+        "label": "Open linked diagram",
+        "id": "codestar_ctx_menu3",
+        "command": "codestar:open_linked_diagram"
+      }
+    ]
+  }
+}
