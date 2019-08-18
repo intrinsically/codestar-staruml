@@ -1,10 +1,10 @@
 {
-  "name": "staruml.codemap",
-  "title": "Codemap",
-  "description": "Allows an element to have the first doc line as file:pattern and cmd-O will instruct VSCode to go to that file/location. Based on StarUML_LinkedDiagramNavigator by Marco Zille",
-  "homepage": "https://bitbucket.org/andrewmcv/codemap-staruml/src",
-  "issues": "https://bitbucket.org/andrewmcv/codemap-staruml/src",
-  "version": "2.0.0",
+  "name": "codestar",
+  "title": "Codestar",
+  "description": "Creates a link between StarUML and the Visual Studio Code editor, to allow quick navigation to files",
+  "homepage": "https://github.com/intrinsically/codestar-staruml.git",
+  "issues": "https://github.com/intrinsically/codestar-staruml/issues",
+  "version": "0.0.1",
   "keywords": [
     "vscode",
     "diagrams",
@@ -15,7 +15,7 @@
     "email": "andrew.mcveigh@gmail.com",
     "url": "https://bitbucket.org/andrewmcv"
   },
-  "license": "Apache",
+  "license": "GPLv3",
   "engines": {
     "staruml": ">=3.0.0"
   }
