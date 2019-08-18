@@ -4,7 +4,7 @@
   "description": "Creates a link between StarUML and the Visual Studio Code editor, to allow quick navigation to files",
   "homepage": "https://github.com/intrinsically/codestar-staruml.git",
   "issues": "https://github.com/intrinsically/codestar-staruml/issues",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "vscode",
     "diagrams",
