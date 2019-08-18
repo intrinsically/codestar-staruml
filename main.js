@@ -20,11 +20,17 @@ function init() {
   $("#diagram-canvas").mousedown(function(e) {
     switch (e.which) {
       case 2:
-        console.log(e);
         var diagram = app.diagrams.getCurrentDiagram();
         var editor = app.diagrams.getEditor();
-        var view = diagram.getViewAt(editor.canvas, e.offsetX, e.offsetY);
-        if (view) {
+        var zoom = editor.canvas.zoomFactor;
+        var scale = zoom.numer / zoom.denom;
+
+        var view = diagram.getViewAt(
+          editor.canvas,
+          e.offsetX / scale,
+          e.offsetY / scale
+        );
+        if (view && view.model) {
           var model = view.model;
           if (e.metaKey || e.ctrlKey) {
             vscode._saveVSCodeLocation(model);

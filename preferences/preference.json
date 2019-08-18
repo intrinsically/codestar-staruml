@@ -1,0 +1,16 @@
+{
+  "id": "codestar",
+  "name": "Codestar",
+  "schema": {
+    "codestar": {
+      "text": "Codestar preferences",
+      "type": "section"
+    },
+    "codestar.vscodePort": {
+      "text": "VSCode port",
+      "description": "Port to talk to VSCode codestar extension on",
+      "type": "number",
+      "default": 8081
+    }
+  }
+}

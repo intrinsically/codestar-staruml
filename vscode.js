@@ -22,6 +22,7 @@ function _openVSCodeLocation(element) {
     message.warning("No VSCode navigation instruction! Form is ->file:pattern");
     return;
   }
+  var port = app.preferences.get("codestar.vscodePort");
   var parts = first.substring(2).split(":");
   var file = parts[0];
   var pattern = parts[1];
@@ -31,7 +32,7 @@ function _openVSCodeLocation(element) {
   }
   $.ajax({
     type: "POST",
-    url: "http://127.0.0.1:8081/setLocation",
+    url: "http://127.0.0.1:" + port + "/setLocation",
     data: JSON.stringify({
       file: file,
       pattern: pattern
@@ -59,9 +60,10 @@ function _saveVSCodeLocation(element) {
   if (!element) {
     return;
   }
+  var port = app.preferences.get("codestar.vscodePort");
   $.ajax({
     type: "GET",
-    url: "http://127.0.0.1:8081/getLocation",
+    url: "http://127.0.0.1:" + port + "/getLocation",
     success: function(data) {
       element.documentation = "->" + data.file + ":" + data.pattern;
       message.info("Saved linked VSCode location");
