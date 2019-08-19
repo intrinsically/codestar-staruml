@@ -4,6 +4,10 @@
 
 This extension lets the user navigate to a file and pattern in VSCode. It is designed for me to be able to draw up a diagram, and then tag various elements with VSCode locations and jump to them quickly. In essence, this is a map of your code.
 
+## Prerequisites
+
+Please make sure you install the VSCode Codestar extension, and start it with the "Codestart: Start" command. The extension lives [here](https://marketplace.visualstudio.com/items?itemName=amcveighvscodeextensions.codestar) but you should install it using the extension tab of VSCode.
+
 ## Usage
 
 Ensure the Codestar VSCode extension is running. If it isn't, the linked diagram navigation will work, but not the VSCode functions.
