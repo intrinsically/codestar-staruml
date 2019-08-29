@@ -22,7 +22,8 @@ function _openVSCodeLocation(element) {
     message.warning("No VSCode navigation instruction! Form is ->file:pattern");
     return;
   }
-  var port = app.preferences.get("codestar.vscodePort");
+  var startPort = app.preferences.get("codestar.vscodeStartPort");
+  var endPort = app.preferences.get("codestar.vscodeEndPort");
   var parts = first.substring(2).split(":");
   var file = parts[0];
   var pattern = parts[1];
@@ -30,25 +31,20 @@ function _openVSCodeLocation(element) {
     message.warning("No file specified in navigation instruction");
     return;
   }
-  $.ajax({
-    type: "POST",
-    url: "http://127.0.0.1:" + port + "/setLocation",
-    data: JSON.stringify({
-      file: file,
-      pattern: pattern
-    }),
-    success: function(data) {
-      message.info("Opened VSCode location");
-    },
-    error: function(err) {
-      message.error(
-        "Cannot communicate with Codestar VSCode extension: " + err.message
-      );
-      console.log(err);
-    },
+  for (var port = startPort; port <= endPort; port++) {
+    $.ajax({
+      type: "POST",
+      url: "http://127.0.0.1:" + port + "/setLocation",
+      data: JSON.stringify({
+        file: file,
+        pattern: pattern
+      }),
+      success: function(data) {},
+      error: function(err) {},
 
-    dataType: "json"
-  });
+      dataType: "json"
+    });
+  }
 }
 
 function _handleSaveVSCodeLocation() {

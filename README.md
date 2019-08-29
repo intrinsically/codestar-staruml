@@ -8,11 +8,15 @@ This extension lets the user navigate to a file and pattern in VSCode. It is des
 
 Please make sure you also install the VSCode Codestar extension, and start it with the "Codestart: Start" command. The extension lives [here](https://marketplace.visualstudio.com/items?itemName=amcveighvscodeextensions.codestar) but you should install it using the extension tab of VSCode.
 
-This extension starts up a small server inside VSCode on port :8081, supporting the StarUML extension.
+This extension starts up a small server inside VSCode on a port, supporting the StarUML extension.
 
 ## Usage
 
 Ensure the Codestar VSCode extension is running. If it isn't, the linked diagram navigation will work, but not the VSCode functions.
+
+## Preferences
+
+You can define the start and end port in the preferences. By default the extension will talk to ports 8081 through to 8091, so you can control up to 10 VSCode windows if desired. Note that you will need to start up the VSCode Codestar extension with "CodeStar: start" and pick a different port per window.
 
 ## Store VSCode position
 
