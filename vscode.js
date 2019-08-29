@@ -56,22 +56,41 @@ function _saveVSCodeLocation(element) {
   if (!element) {
     return;
   }
-  var port = app.preferences.get("codestar.vscodePort");
-  $.ajax({
-    type: "GET",
-    url: "http://127.0.0.1:" + port + "/getLocation",
-    success: function(data) {
-      element.documentation = "->" + data.file + ":" + data.pattern;
-      message.info("Saved linked VSCode location");
-    },
-    error: function(err) {
-      message.error(
-        "Cannot communicate with Codestar VSCode extension: " + err.message
-      );
-      console.log(err);
-    },
-    dataType: "json"
-  });
+  var startPort = app.preferences.get("codestar.vscodeStartPort");
+  var endPort = app.preferences.get("codestar.vscodeEndPort");
+
+  var latest = null;
+  var savedPort = null;
+  for (var port = startPort; port <= endPort; port++) {
+    function ajaxCall(saved) {
+      $.ajax({
+        type: "GET",
+        url: "http://127.0.0.1:" + port + "/getLocation",
+        success: function(data) {
+          var gotFocus = new Date(data.lastGotFocus);
+          if (!latest || gotFocus > latest) {
+            element.documentation = "->" + data.file + ":" + data.pattern;
+            savedPort = saved;
+            latest = gotFocus;
+          }
+          if (saved == endPort) {
+            reportSuccess();
+          }
+        },
+        error: function(err) {
+          if (saved == endPort) {
+            reportSuccess();
+          }
+        },
+        dataType: "json"
+      });
+    }
+    ajaxCall(port);
+  }
+}
+
+function reportSuccess() {
+  message.info("Saved linked VSCode location");
 }
 
 exports._handleSaveVSCodeLocation = _handleSaveVSCodeLocation;
